@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FocusFlow – Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">FOCUS<span>FLOW</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="dashboard.html" class="nav-link active">Dashboard</a>
+        <a href="tasks.html" class="nav-link">Tasks</a>
+        <a href="reports.html" class="nav-link">Reports</a>
+        <a href="settings.html" class="nav-link">Settings</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="card">
+      <div class="card-header">
+        <h1 class="card-title">Dashboard</h1>
+        <p class="card-subtitle">
+          A quick snapshot of today’s activity based on your tasks.
+        </p>
+      </div>
+
+      <p class="page-lead">
+        Date: <span id="summary-date"></span>
+      </p>
+
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi-label">Total Pomodoros</div>
+          <div class="kpi-value" id="summary-pomodoros">0</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Work Minutes</div>
+          <div class="kpi-value" id="summary-work">0</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Tasks Created Today</div>
+          <div class="kpi-value" id="summary-created">0</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Tasks Completed Today</div>
+          <div class="kpi-value" id="summary-completed">0</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Current Streak</div>
+          <div class="kpi-value" id="summary-streak">0</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

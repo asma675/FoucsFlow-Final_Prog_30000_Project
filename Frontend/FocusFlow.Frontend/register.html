@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FocusFlow – Register</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">FOCUS<span>FLOW</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Login</a>
+        <a href="register.html" class="nav-link active">Register</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="tasks.html" class="nav-link">Tasks</a>
+        <a href="reports.html" class="nav-link">Reports</a>
+        <a href="settings.html" class="nav-link">Settings</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="card">
+      <div class="card-header">
+        <h1 class="card-title">Create an account ✨</h1>
+        <p class="card-subtitle">
+          Registration is optional – you can also explore as a guest.
+        </p>
+      </div>
+
+      <form id="register-form" class="grid-two">
+        <div>
+          <label class="form-label" for="register-username">Username</label>
+          <input id="register-username" type="text" required />
+        </div>
+        <div>
+          <label class="form-label" for="register-email">Email</label>
+          <input id="register-email" type="email" required />
+        </div>
+        <div>
+          <label class="form-label" for="register-password">Password</label>
+          <input id="register-password" type="password" required />
+        </div>
+        <div>
+          <button type="submit" class="btn">Sign up</button>
+          <p class="helper-text" style="margin-top:0.4rem;">
+            Already have an account?
+            <a class="link-inline" href="index.html">Login instead</a>.
+          </p>
+        </div>
+      </form>
+
+      <div id="register-message" class="message"></div>
+    </section>
+  </main>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

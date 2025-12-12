@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FocusFlow – Procrastination Tracker</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">FOCUS<span>FLOW</span></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="tasks.html" class="nav-link">Tasks</a>
+        <a href="reports.html" class="nav-link">Reports</a>
+        <a href="settings.html" class="nav-link">Settings</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="card">
+      <div class="card-header">
+        <h1 class="card-title">Beat procrastination with FocusFlow ✨</h1>
+        <p class="card-subtitle">
+          A simple, glowing dashboard to track tasks, estimate focus time,
+          and notice your streaks – all in your browser, no login needed.
+        </p>
+      </div>
+
+      <p class="page-lead">
+        Data is stored locally in your browser using <code>localStorage</code>.
+        You can jump straight into the app:
+      </p>
+
+      <button class="btn" onclick="window.location.href='dashboard.html'">
+        Open dashboard
+      </button>
+
+      <p class="helper-text" style="margin-top:0.9rem;">
+        Or go directly to
+        <a class="link-inline" href="tasks.html">Tasks</a>,
+        <a class="link-inline" href="reports.html">Reports</a>, or
+        <a class="link-inline" href="settings.html">Settings</a>.
+      </p>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
