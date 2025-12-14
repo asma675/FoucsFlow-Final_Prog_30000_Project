@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "kjRxmkEJwzQ0NgQelfcHSKRKdAUfHCr/e6slK8p3EFw=",
+  "Source": "FocusFlowAPI",
+  "BasePath": "_content/FocusFlowAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
