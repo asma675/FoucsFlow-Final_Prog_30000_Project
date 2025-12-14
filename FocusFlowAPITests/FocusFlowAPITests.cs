@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
+
 using FocusFlowAPI.Controllers;
 using FocusFlowAPI.Data;
 using FocusFlowAPI.Models;
@@ -33,6 +34,11 @@ namespace FocusFlowAPI.Tests
             _context.Dispose();
         }
 
+        /*
+         Asma
+         Verifies that an empty list is returned upon requesting user list, if the database is empty.
+         */
+
         [Fact]
         public async Task GetUsers_ReturnsEmptyList_WhenNoUsers()
         {
@@ -45,6 +51,10 @@ namespace FocusFlowAPI.Tests
             Assert.Empty(users);
         }
 
+        /*
+         Asma
+         Verifies that all users from the database are returned.
+         */
         [Fact]
         public async Task GetUsers_ReturnsAllUsers()
         {
@@ -63,6 +73,10 @@ namespace FocusFlowAPI.Tests
             Assert.Equal(2, users.Count);
         }
 
+        /*
+         Asma
+         Verfiies that specific (existing) user can be retrieved from database.
+         */
         [Fact]
         public async Task GetUser_ReturnsUser_WhenUserExists()
         {
@@ -80,7 +94,11 @@ namespace FocusFlowAPI.Tests
             Assert.Equal(user.Id, returnedUser.Id);
             Assert.Equal("John", returnedUser.FirstName);
         }
-
+        
+        /*
+         Asma
+         Verifies that not found (404) is returned when the user does not exist.
+         */
         [Fact]
         public async Task GetUser_ReturnsNotFound_WhenUserDoesNotExist()
         {
@@ -91,6 +109,10 @@ namespace FocusFlowAPI.Tests
             Assert.IsType<NotFoundResult>(result.Result);
         }
 
+        /*
+         Hayden
+         Confirms a user is created when valid user data is given
+         */
         [Fact]
         public async Task PostUser_CreatesUser_WhenValid()
         {
@@ -113,7 +135,11 @@ namespace FocusFlowAPI.Tests
             Assert.Equal("john@test.com", createdUser.Email);
             Assert.Equal(1, await _context.Users.CountAsync());
         }
-
+        
+        /*
+         Hayden
+         Checks that duplicate emails aren't allowed on user creation
+         */
         [Fact]
         public async Task PostUser_ReturnsConflict_WhenEmailExists()
         {
@@ -133,6 +159,10 @@ namespace FocusFlowAPI.Tests
             Assert.Equal("A user with this email address already exists.", conflictResult.Value);
         }
 
+        /*
+         Hayden
+         Confirms successful login with correct credentials
+         */
         [Fact]
         public async Task LoginUser_ReturnsUser_WhenCredentialsValid()
         {
@@ -151,7 +181,11 @@ namespace FocusFlowAPI.Tests
             var returnedUser = Assert.IsType<User>(actionResult.Value);
             Assert.Equal(user.Id, returnedUser.Id);
         }
-
+        
+        /*
+         Hayden
+         Confirms unsuccessful login with incorrect credentials
+         */
         [Fact]
         public async Task LoginUser_ReturnsUnauthorized_WhenCredentialsInvalid()
         {
@@ -166,7 +200,11 @@ namespace FocusFlowAPI.Tests
             var unauthorizedResult = Assert.IsType<UnauthorizedObjectResult>(actionResult.Result);
             Assert.Equal("Invalid email or password.", unauthorizedResult.Value);
         }
-
+        
+        /*
+         Adrian
+         Task is sucessfully created (when valid task info is passed).
+         */
         [Fact]
         public async Task PostTaskForUser_CreatesTask_WhenValid()
         {
@@ -193,7 +231,11 @@ namespace FocusFlowAPI.Tests
             Assert.Equal(user.Id, createdTask.UserId);
             Assert.Equal("Open", createdTask.Status);
         }
-
+        
+        /*
+         Adrian
+         Not found is returned when trying to create task for non-existing user.
+         */
         [Fact]
         public async Task PostTaskForUser_ReturnsNotFound_WhenUserDoesNotExist()
         {
@@ -208,7 +250,11 @@ namespace FocusFlowAPI.Tests
             var notFoundResult = Assert.IsType<NotFoundObjectResult>(actionResult.Result);
             Assert.Contains("User with ID 999 not found", notFoundResult.Value.ToString());
         }
-
+        
+        /*
+         Hayden
+         Confirms all tasks for existing user are retrieved.
+         */
         [Fact]
         public async Task GetTasksForUser_ReturnsTasks_WhenUserHasTasks()
         {
@@ -231,7 +277,11 @@ namespace FocusFlowAPI.Tests
             var tasks = Assert.IsAssignableFrom<IEnumerable<UserTask>>(okResult.Value).ToList();
             Assert.Equal(2, tasks.Count);
         }
-
+        
+        /*
+         Adrian
+         When retrieving user's task list, empty list is tested for if user has no tasks.
+         */
         [Fact]
         public async Task GetTasksForUser_ReturnsEmptyList_WhenUserHasNoTasks()
         {
@@ -249,7 +299,11 @@ namespace FocusFlowAPI.Tests
             var tasks = Assert.IsAssignableFrom<IEnumerable<UserTask>>(okResult.Value).ToList();
             Assert.Empty(tasks);
         }
-
+        
+        /*
+         Hayden
+         Confirms that task has successfully been set as 'Done'.
+         */
         [Fact]
         public async Task CompleteTask_MarksTaskAsDone()
         {
@@ -271,7 +325,11 @@ namespace FocusFlowAPI.Tests
             Assert.Equal("Done", updatedTask.Status);
             Assert.NotNull(updatedTask.CompletionDate);
         }
-
+        
+        /*
+         Adrian
+         Confirms 404 is returned if non-existing task is set as 'Done'.
+         */
         [Fact]
         public async Task CompleteTask_ReturnsNotFound_WhenTaskDoesNotExist()
         {
@@ -287,7 +345,11 @@ namespace FocusFlowAPI.Tests
             var notFoundResult = Assert.IsType<NotFoundObjectResult>(result);
             Assert.Contains("Task with ID 999 not found", notFoundResult.Value.ToString());
         }
-
+        
+        /*
+         Asma
+         Verifies that task was sucessfully updated
+         */
         [Fact]
         public async Task UpdateTask_UpdatesTaskFields()
         {
@@ -315,6 +377,10 @@ namespace FocusFlowAPI.Tests
             Assert.Equal("In Progress", updatedTask.Status);
         }
 
+        /*
+         Adrian
+         Verifies correctly set completion date when task is set to'Done'.
+         */
         [Fact]
         public async Task UpdateTask_SetsCompletionDate_WhenStatusChangesToDone()
         {
@@ -339,7 +405,11 @@ namespace FocusFlowAPI.Tests
             Assert.Equal("Done", updatedTask.Status);
             Assert.NotNull(updatedTask.CompletionDate);
         }
-
+        
+        /*
+         Adrian
+         Confirms deleted task was removed from database.
+         */
         [Fact]
         public async Task DeleteTask_RemovesTask()
         {
@@ -359,7 +429,11 @@ namespace FocusFlowAPI.Tests
             Assert.IsType<NoContentResult>(result);
             Assert.Equal(0, await _context.UserTasks.CountAsync());
         }
-
+        
+        /*
+         Asma
+         Tests for 404 return if trying to delete non-existent task.
+         */
         [Fact]
         public async Task DeleteTask_ReturnsNotFound_WhenTaskDoesNotExist()
         {
@@ -389,7 +463,7 @@ namespace FocusFlowAPI.Tests
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Use the options passed in constructor (for in-memory database)
+            // Use options passed in constructor (for in-memory database)
             // Don't call base OnConfiguring which would set SQLite
             if (!optionsBuilder.IsConfigured)
             {
