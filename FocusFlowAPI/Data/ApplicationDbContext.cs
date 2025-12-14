@@ -10,9 +10,9 @@ public class ApplicationDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<UserTask> UserTasks { get; set; }
 
+    //Add default data for testing
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // --- USER SEED DATA (YOUR EXISTING CODE) ---
         modelBuilder.Entity<User>().HasData(
             new User
             {
@@ -33,53 +33,48 @@ public class ApplicationDbContext : DbContext
                 CreatedDate = DateTime.Parse("2025-01-01T10:05:00Z").ToUniversalTime()
             }
         );
-        // -------------------------------------------
 
 
-        // --- NEW TASK SEED DATA ---
             modelBuilder.Entity<UserTask>().HasData(            
                 new UserTask
             {
-                // Task 1: Assigned to User ID 1 (Admin)
                 Id = 1,
-                UserId = 1, // <--- Foreign Key Link!
+                UserId = 1, 
                 Title = "Set up API Endpoint",
-                Priority = 1, // High
+                Priority = 1, 
                 DueDate = DateTime.Parse("2025-01-15T12:00:00Z").ToUniversalTime(),
                 Category = "Development",
                 Status = "In Progress",
                 CompletionDate = null,
-                EstimatedTime = new TimeSpan(4, 30, 0) // 4 hours 30 minutes
+                EstimatedTime = new TimeSpan(4, 30, 0)
             },
             new UserTask
             {
-                // Task 2: Assigned to User ID 1 (Admin) - Completed
+   
                 Id = 2,
-                UserId = 1, // <--- Foreign Key Link!
+                UserId = 1, 
                 Title = "Define User Model",
-                Priority = 2, // Medium
+                Priority = 2, 
                 DueDate = DateTime.Parse("2025-01-05T09:00:00Z").ToUniversalTime(),
                 Category = "Development",
                 Status = "Done",
                 CompletionDate = DateTime.Parse("2025-01-04T18:00:00Z").ToUniversalTime(),
-                EstimatedTime = new TimeSpan(2, 0, 0) // 2 hours
+                EstimatedTime = new TimeSpan(2, 0, 0) 
             },
             new UserTask
             {
-                // Task 3: Assigned to User ID 2 (Test Client)
                 Id = 3,
-                UserId = 2, // <--- Foreign Key Link!
+                UserId = 2, 
                 Title = "Review Task Requirements",
-                Priority = 3, // Low
+                Priority = 3,
                 DueDate = DateTime.Parse("2025-01-30T17:00:00Z").ToUniversalTime(),
                 Category = "Testing",
                 Status = "Open",
                 CompletionDate = null,
-                EstimatedTime = new TimeSpan(1, 0, 0) // 1 hour
+                EstimatedTime = new TimeSpan(1, 0, 0)
             }
         );
 
-        // Important: Call the base implementation last
         base.OnModelCreating(modelBuilder);
     }
 

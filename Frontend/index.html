@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login or Sign Up</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+    <h1>FocusFlow User Access</h1>
+    
+    <div class="login-container">
+        
+        <div class="form-toggle">
+            <button id="showLoginBtn" class="active">Log In</button>
+            <button id="showSignupBtn">Sign Up</button>
+        </div>
+
+        <div id="loginFormContainer" class="form-container">
+            <h2>User Login</h2>
+            <form id="loginForm">
+                <div>
+                    <label for="username">Email:</label>
+                    <input type="email" id="username" name="email" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+
+        <div id="signupFormContainer" class="form-container" style="display: none;">
+            <h2>Create Account</h2>
+            <form id="signupForm">
+                 <div>
+                    <label for="signupEmail">Email:</label>
+                    <input type="email" id="signupEmail" name="email" required>
+                </div>
+                 <div>
+                    <label for="signupPassword">Password:</label>
+                    <input type="password" id="signupPassword" name="password" required>
+                </div>
+                <div>
+                    <label for="signupFirstName">First Name:</label>
+                    <input type="text" id="signupFirstName" name="firstName" required>
+                </div>
+                <div>
+                    <label for="signupLastName">Last Name:</label>
+                    <input type="text" id="signupLastName" name="lastName" required>
+                </div>
+                <button type="submit">Create Account</button>
+            </form>
+        </div>
+        
+        <p id="message" style="margin-top: 20px; text-align: center;"></p>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

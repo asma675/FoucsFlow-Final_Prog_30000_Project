@@ -4,7 +4,16 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy",
+        policy =>
+        {
+            policy.WithOrigins("http://127.0.0.1:5500") 
+                  .AllowAnyHeader()  
+                  .AllowAnyMethod(); 
+        });
+});
 builder.Services.AddControllers();
 builder.Services.AddEntityFrameworkSqlite().AddDbContext<ApplicationDbContext>();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -23,5 +32,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseCors("CorsPolicy");
 app.Run();

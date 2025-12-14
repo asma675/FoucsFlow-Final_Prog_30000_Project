@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace FocusFlowAPI.Models
 {
-    // This class represents the 'Tasks' table in the database
+    // This class represents the task table
     public class UserTask
     {
         [Key] 

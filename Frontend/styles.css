@@ -1,0 +1,320 @@
+/* Message colors (to work with the JS feedback) */
+#message[style*="green"] {
+    color: #4CAF50 !important;
+}
+
+#message[style*="red"] {
+    color: #f44336 !important;
+}
+
+#message[style*="blue"] {
+    color: #2196F3 !important;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+h1 {
+    color: #1877f2;
+    margin-bottom: 20px;
+    font-size: 2em;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.form-toggle {
+    display: flex;
+    justify-content: stretch;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.form-toggle button {
+    flex: 1;
+    padding: 15px 0;
+    cursor: pointer;
+    border: none;
+    border-bottom: 3px solid transparent;
+    background-color: #f4f4f4;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+.form-toggle button.active {
+    background-color: #ffffff;
+    color: #1877f2;
+    border-bottom: 3px solid #1877f2;
+    font-weight: bold;
+}
+    
+.form-toggle button:hover:not(.active) {
+    background-color: #eaeaea;
+}
+
+.form-container {
+    border: none;
+    padding: 20px 30px 30px 30px;
+    background-color: #fff;
+}
+    
+.form-container form div {
+    margin-bottom: 15px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-container input[type="email"],
+.form-container input[type="password"],
+.form-container input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.form-container input:focus {
+    border-color: #1877f2;
+    box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+    outline: none;
+}
+
+.form-container button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #1877f2;
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.form-container button[type="submit"]:hover {
+    background-color: #156ac1;
+}
+
+#message {
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.form-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.form-toggle button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f4f4f4;
+}
+.form-toggle button.active {
+    background-color: #fff;
+    border-bottom: none;
+    font-weight: bold;
+}
+.form-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 0 0 5px 5px;
+}
+
+/* --- Global & Layout Styles --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef2f7;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4A90E2;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+#auth-status {
+    margin: 5px 0 0 0;
+    font-style: italic;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 30px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.task-form-section {
+    flex: 1; 
+    min-width: 300px;
+}
+
+.task-list-section {
+    flex: 2; 
+    min-width: 400px;
+}
+
+h2 {
+    color: #4A90E2;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* --- Form Styling (Add New Task) --- */
+#addTaskForm div {
+    margin-bottom: 15px;
+}
+
+#addTaskForm label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+#addTaskForm input[type="text"],
+#addTaskForm input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+#addTaskForm button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #5cb85c;
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+#addTaskForm button[type="submit"]:hover {
+    background-color: #4cae4c;
+}
+
+/* --- Task List Styling --- */
+#taskList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#taskList li {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+/* Open/In Progress Tasks */
+.task-open {
+    background-color: #fff3cd;
+    border-left: 5px solid #ffc107;
+}
+
+/* Completed Tasks */
+.task-done {
+    background-color: #d4edda;
+    border-left: 5px solid #28a745;
+    color: #6c757d;
+    text-decoration: line-through;
+}
+
+/* Complete Button Styling */
+.complete-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    margin-left: 15px;
+    flex-shrink: 0;
+}
+
+.complete-button:hover {
+    background-color: #c82333;
+}
+
+/* Message Styling */
+#form-message {
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+}

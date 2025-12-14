@@ -6,7 +6,7 @@ using FocusFlowAPI.Models;
 
 namespace FocusFlowAPI.Controllers;
 
-
+//Controller for the API
 [ApiController] 
 [Route("api/[controller]")]
 public class UsersController : ControllerBase 
@@ -27,7 +27,7 @@ public class UsersController : ControllerBase
         return await _context.Users.ToListAsync();
     }
 
-    
+    //Get user from id
     [HttpGet("{id}")]
     public async Task<ActionResult<User>> GetUser(int id)
     {
@@ -40,7 +40,7 @@ public class UsersController : ControllerBase
 
         return user;
     }
-
+    //login this returns the user
     [HttpPost("login")]
     public async Task<ActionResult<User>> LoginUser([FromBody] UserLoginDto login)
     {
@@ -54,7 +54,7 @@ public class UsersController : ControllerBase
 
         return user;
     }
-
+    //used to create a user
     [HttpPost]
     public async Task<ActionResult<User>> PostUser([FromBody] User user)
     {
@@ -76,7 +76,7 @@ public class UsersController : ControllerBase
 
         return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
     }
-
+    //Get all users tasks
     [HttpPost("{userId}/Tasks")]
     public async Task<ActionResult<UserTask>> PostTaskForUser(int userId, [FromBody] UserTask userTask)
     {
