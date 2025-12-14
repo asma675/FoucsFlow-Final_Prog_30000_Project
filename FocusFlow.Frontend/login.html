@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FocusFlow – Login</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">FOCUS<span>FLOW</span></a>
+      <div class="nav-links">
+        <a href="login.html" class="nav-link active">Login</a>
+        <a href="register.html" class="nav-link">Register</a>
+        <a href="tasks.html" class="nav-link">Tasks</a>
+      </div>
+      <button id="logout-btn" class="btn btn-small" type="button">Logout</button>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="card">
+      <div class="card-header">
+        <h1 class="card-title">Login</h1>
+        <p class="card-subtitle">Use your email + passwordHash to sign in.</p>
+      </div>
+
+      <form id="login-form">
+        <label class="form-label" for="login-email">Email</label>
+        <input id="login-email" type="email" required />
+
+        <label class="form-label" for="login-password">Password</label>
+        <input id="login-password" type="password" required />
+
+        <button class="btn" type="submit">Login</button>
+        <p id="login-message" class="helper-text" style="margin-top:.8rem;"></p>
+      </form>
+
+      <p class="helper-text" style="margin-top:1rem;">
+        No account? <a class="link-inline" href="register.html">Register here</a>
+      </p>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

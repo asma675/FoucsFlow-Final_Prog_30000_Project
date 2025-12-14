@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FocusFlow – Register</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">FOCUS<span>FLOW</span></a>
+      <div class="nav-links">
+        <a href="login.html" class="nav-link">Login</a>
+        <a href="register.html" class="nav-link active">Register</a>
+        <a href="tasks.html" class="nav-link">Tasks</a>
+      </div>
+      <button id="logout-btn" class="btn btn-small" type="button">Logout</button>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="card">
+      <div class="card-header">
+        <h1 class="card-title">Create an account</h1>
+        <p class="card-subtitle">This uses POST <code>/api/Users</code>.</p>
+      </div>
+
+      <form id="register-form">
+        <div class="grid-two">
+          <div>
+            <label class="form-label" for="reg-firstName">First name</label>
+            <input id="reg-firstName" type="text" required />
+          </div>
+          <div>
+            <label class="form-label" for="reg-lastName">Last name</label>
+            <input id="reg-lastName" type="text" required />
+          </div>
+        </div>
+
+        <label class="form-label" for="reg-email">Email</label>
+        <input id="reg-email" type="email" required />
+
+        <label class="form-label" for="reg-password">Password</label>
+        <input id="reg-password" type="password" required />
+
+        <button class="btn" type="submit">Register</button>
+        <p id="register-message" class="helper-text" style="margin-top:.8rem;"></p>
+      </form>
+
+      <p class="helper-text" style="margin-top:1rem;">
+        Already have an account? <a class="link-inline" href="login.html">Login</a>
+      </p>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FocusFlow – Tasks</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">FOCUS<span>FLOW</span></a>
+      <div class="nav-links">
+        <a href="login.html" class="nav-link">Login</a>
+        <a href="register.html" class="nav-link">Register</a>
+        <a href="tasks.html" class="nav-link active">Tasks</a>
+      </div>
+      <button id="logout-btn" class="btn btn-small" type="button">Logout</button>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="card">
+      <div class="card-header">
+        <h1 class="card-title">Tasks</h1>
+        <p class="card-subtitle">
+          Logged in as <span id="whoami" style="opacity:.75;"></span>
+        </p>
+      </div>
+
+      <form id="task-form" style="margin-bottom:1.1rem;">
+        <input type="hidden" id="task-id" />
+
+        <div class="grid-two">
+          <div>
+            <label class="form-label" for="task-title">Title</label>
+            <input id="task-title" type="text" required />
+          </div>
+
+          <div>
+            <label class="form-label" for="task-category">Category</label>
+            <input id="task-category" type="text" placeholder="e.g., School, Work" />
+          </div>
+
+          <div>
+            <label class="form-label" for="task-priority">Priority</label>
+            <select id="task-priority">
+              <option>Low</option>
+              <option selected>Medium</option>
+              <option>High</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="form-label" for="task-dueDate">Due date</label>
+            <input id="task-dueDate" type="date" />
+          </div>
+
+          <div>
+            <label class="form-label" for="task-estimated">Estimated time</label>
+            <input id="task-estimated" type="text" placeholder="HH:MM:SS (e.g., 01:30:00) or minutes (e.g., 90)" />
+          </div>
+        </div>
+
+        <button class="btn" type="submit" style="margin-top: .8rem;">Add task</button>
+      </form>
+
+      <div style="overflow:auto;">
+        <table id="tasks-table" class="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Due</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/tasks.js"></script>
+</body>
+</html>

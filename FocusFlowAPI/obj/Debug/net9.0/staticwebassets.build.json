@@ -1,12 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "kjRxmkEJwzQ0NgQelfcHSKRKdAUfHCr/e6slK8p3EFw=",
-  "Source": "FocusFlowAPI",
-  "BasePath": "_content/FocusFlowAPI",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
-}
+{"Version":1,"Hash":"hTdW0/XfvTwaYEAJGtvxe2jtkt7vQ8Ytk5GVSJKDxdo=","Source":"FocusFlowAPI","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}

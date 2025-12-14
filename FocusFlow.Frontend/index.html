@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FocusFlow – Home</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">FOCUS<span>FLOW</span></a>
+      <div class="nav-links">
+        <a href="login.html" class="nav-link">Login</a>
+        <a href="register.html" class="nav-link">Register</a>
+        <a href="tasks.html" class="nav-link">Tasks</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page">
+    <section class="card">
+      <div class="card-header">
+        <h1 class="card-title">FocusFlow</h1>
+        <p class="card-subtitle">Frontend wired to the backend endpoints from <code>/api/Users</code>.</p>
+      </div>
+
+      <p class="page-lead">Start here:</p>
+
+      <div style="display:flex; gap:.6rem; flex-wrap:wrap;">
+        <button class="btn" onclick="window.location.href='login.html'">Login</button>
+        <button class="btn" onclick="window.location.href='register.html'">Register</button>
+        <button class="btn" onclick="window.location.href='tasks.html'">Go to Tasks</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+</body>
+</html>

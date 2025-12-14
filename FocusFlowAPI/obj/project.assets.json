@@ -7761,25 +7761,32 @@
     ]
   },
   "packageFolders": {
-    "/home/ajaroszewski/.nuget/packages/": {}
+    "C:\\Users\\kokok\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/ajaroszewski/Coding/FocusFlow/FocusFlowAPI/FocusFlowAPI.csproj",
+      "projectUniqueName": "C:\\Users\\kokok\\Desktop\\Code\\School\\Prog30000\\final\\FocusFlowAPI\\FocusFlowAPI.csproj",
       "projectName": "FocusFlowAPI",
-      "projectPath": "/home/ajaroszewski/Coding/FocusFlow/FocusFlowAPI/FocusFlowAPI.csproj",
-      "packagesPath": "/home/ajaroszewski/.nuget/packages/",
-      "outputPath": "/home/ajaroszewski/Coding/FocusFlow/FocusFlowAPI/obj/",
+      "projectPath": "C:\\Users\\kokok\\Desktop\\Code\\School\\Prog30000\\final\\FocusFlowAPI\\FocusFlowAPI.csproj",
+      "packagesPath": "C:\\Users\\kokok\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kokok\\Desktop\\Code\\School\\Prog30000\\final\\FocusFlowAPI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/ajaroszewski/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\kokok\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "/usr/lib64/dotnet/library-packs": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7798,7 +7805,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net9.0": {
@@ -7846,7 +7853,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/9.0.112/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100-rc.1.25451.107/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
