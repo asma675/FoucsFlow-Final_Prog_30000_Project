@@ -1,130 +1,89 @@
-const userId = localStorage.getItem('currentUserId');
-const taskListElement = document.getElementById('taskList');
-const addTaskForm = document.getElementById('addTaskForm');
-const formMessage = document.getElementById('form-message');
-const statusMessage = document.getElementById('auth-status');
+document.addEventListener("DOMContentLoaded", async () => {
+  const user = requireAuth();
+  const notice = document.getElementById("dashNotice");
 
-const API_BASE = 'http://localhost:5277/api/Users';
+  try {
+    const tasks = await apiFetch(`/${user.id}/Tasks`, { method: "GET" }) || [];
 
-document.addEventListener('DOMContentLoaded', () => {
-    if (!userId) {
-        statusMessage.textContent = 'User ID not found. Please log in.';
-        // Redirect if not authenticated (best practice)
-        window.location.href = 'index.html'; 
-        return;
+    const now = new Date();
+    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const endOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+
+    const isDone = (t) => (t.status || "").toLowerCase() === "completed" || t.completionDate;
+    const isOpen = (t) => !isDone(t);
+
+    const dueDate = (t) => t.dueDate ? new Date(t.dueDate) : null;
+
+    const total = tasks.length;
+    const done = tasks.filter(isDone).length;
+    const open = total - done;
+
+    const dueSoon = tasks.filter(t => {
+      const d = dueDate(t);
+      if (!d || isDone(t)) return false;
+      const diffDays = (d - now) / (1000 * 60 * 60 * 24);
+      return diffDays >= 0 && diffDays <= 3;
+    }).length;
+
+    // streak: count consecutive days ending today with at least one completion
+    const doneDates = tasks
+      .filter(isDone)
+      .map(t => (t.completionDate ? new Date(t.completionDate) : null))
+      .filter(Boolean)
+      .map(d => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime());
+    const doneSet = new Set(doneDates);
+
+    let streak = 0;
+    for (let i = 0; i < 365; i++) {
+      const day = new Date(startOfToday);
+      day.setDate(day.getDate() - i);
+      if (doneSet.has(day.getTime())) streak++;
+      else break;
     }
-    statusMessage.textContent = `User authenticated (ID: ${userId}). Loading tasks...`;
-    fetchTasks();
+
+    document.getElementById("kpiTotal").textContent = total;
+    document.getElementById("kpiOpen").textContent = open;
+    document.getElementById("kpiDone").textContent = done;
+    document.getElementById("kpiDueSoon").textContent = dueSoon;
+    document.getElementById("kpiStreak").textContent = streak;
+
+    const today = tasks
+      .filter(t => {
+        const d = dueDate(t);
+        if (!d || isDone(t)) return false;
+        return d < endOfToday;
+      })
+      .sort((a,b) => (dueDate(a) || 0) - (dueDate(b) || 0));
+
+    const recent = tasks
+      .filter(isDone)
+      .sort((a,b) => (new Date(b.completionDate || 0)) - (new Date(a.completionDate || 0)))
+      .slice(0,5);
+
+    renderMiniList(document.getElementById("todayList"), today, "No tasks due today.");
+    renderMiniList(document.getElementById("recentDone"), recent, "No completed tasks yet.", true);
+
+  } catch (err) {
+    notice.style.display = "block";
+    setNotice(notice, `Couldn’t load dashboard: ${err.message}`, "bad");
+  }
 });
 
-// --- 1. GET ALL USER TASKS ---
-async function fetchTasks() {
-    taskListElement.innerHTML = ''; // Clear existing tasks
-    try {
-        const response = await fetch(`${API_BASE}/${userId}/Tasks`);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const tasks = await response.json();
-        
-        if (tasks.length === 0) {
-            taskListElement.innerHTML = '<li>You have no tasks! Time to create one.</li>';
-        } else {
-            tasks.forEach(task => displayTask(task));
-        }
-    } catch (error) {
-        taskListElement.innerHTML = `<li>Error loading tasks: ${error.message}</li>`;
-        console.error("Fetch tasks failed:", error);
-    }
+function renderMiniList(host, items, emptyText, doneList=false) {
+  if (!host) return;
+  if (!items.length) {
+    host.innerHTML = `<div class="notice">${emptyText}</div>`;
+    return;
+  }
+  host.innerHTML = items.map(t => {
+    const badge = doneList ? "ok" : "open";
+    const due = t.dueDate ? new Date(t.dueDate).toLocaleDateString() : "No due date";
+    return `<div class="row" style="justify-content:space-between; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.08);">
+      <div>
+        <div style="font-weight:700;">${escapeHtml(t.title || "Untitled")}</div>
+        <div style="color:rgba(234,230,255,.74); font-size:13px;">${escapeHtml(t.category || "General")} • ${due}</div>
+      </div>
+      <span class="badge ${badge}">${doneList ? "Done" : "Open"}</span>
+    </div>`;
+  }).join("");
 }
-
-function displayTask(task) {
-    const listItem = document.createElement('li'); 
-    
-    const taskStatus = task.status?.toLowerCase() ?? 'open'; 
-    
-    listItem.className = taskStatus === 'done' ? 'task-done' : 'task-open';
-    
-    const dueDateText = task.dueDate ? ` (Due: ${new Date(task.dueDate).toLocaleDateString()})` : '';
-    let taskDetails = `${task.title} - Priority: ${task.priority}${dueDateText}`;
-
-    if (taskStatus !== 'done') {
-        const completeButton = document.createElement('button');
-        completeButton.textContent = 'Complete Task';
-        completeButton.className = 'complete-button'; 
-        completeButton.onclick = () => completeTask(task.id); // Note: using task.id (lowercase i)
-        
-        listItem.innerHTML = `<strong>${taskDetails}</strong> [Status: ${task.status}]`;
-        listItem.appendChild(completeButton);
-    } else {
-        const completionDate = new Date(task.completionDate).toLocaleDateString();
-        listItem.innerHTML = `✅ <strike><strong>${task.title}</strong></strike> (Completed: ${completionDate})`;
-    }
-
-    // 6. Append the list item to the task list
-    taskListElement.appendChild(listItem);
-}
-
-
-async function completeTask(taskId) {
-    try {
-        const response = await fetch(`${API_BASE}/${userId}/Tasks/${taskId}/Complete`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json' 
-            }
-        });
-
-        if (response.status === 204 || response.ok) { 
-            formMessage.textContent = `Task ID ${taskId} marked as complete!`;
-            formMessage.style.color = 'green';
-            fetchTasks(); 
-        } else {
-            throw new Error(`Failed to complete task. Status: ${response.status}`);
-        }
-    } catch (error) {
-        formMessage.textContent = `Error completing task: ${error.message}`;
-        formMessage.style.color = 'red';
-        console.error("Complete task failed:", error);
-    }
-}
-
-
-addTaskForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    formMessage.textContent = 'Creating task...';
-    formMessage.style.color = 'blue';
-
-    const newTask = {
-        title: document.getElementById('taskTitle').value,
-        priority: parseInt(document.getElementById('taskPriority').value),
-        category: document.getElementById('taskCategory').value,
-        estimatedTime: document.getElementById('taskEstimatedTime').value || null 
-    };
-
-    try {
-        const response = await fetch(`${API_BASE}/${userId}/Tasks`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newTask)
-        });
-
-        if (response.status === 201) { // 201 Created is typical for a successful POST
-            const createdTask = await response.json();
-            formMessage.textContent = `Task "${createdTask.Title}" created successfully!`;
-            formMessage.style.color = 'green';
-            addTaskForm.reset(); // Clear the form
-            fetchTasks(); // Reload the task list
-        } else {
-            const errorData = await response.json();
-            throw new Error(errorData.title || `Failed to create task. Status: ${response.status}`);
-        }
-
-    } catch (error) {
-        formMessage.textContent = `Error creating task: ${error.message}`;
-        formMessage.style.color = 'red';
-        console.error("Create task failed:", error);
-    }
-});

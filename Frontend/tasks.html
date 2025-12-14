@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tasks • FocusFlow</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <div>FOCUSFLOW</div>
+      </div>
+      <div class="nav-links" id="nav-links"></div>
+      <div class="row" id="nav-actions"></div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+  <section class="card">
+    <div class="card-header">
+      <div>
+        <h1 class="h1">Tasks</h1>
+        <p class="lead">Create tasks, set a due date, and mark them complete.</p>
+      </div>
+      <div class="row">
+        <button class="btn" id="refreshBtn" type="button">Refresh</button>
+      </div>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h2 class="h2">New task</h2>
+        <div id="notice" class="notice" style="display:none; margin-top:10px;"></div>
+
+        <form id="taskForm" class="grid" style="margin-top:12px;">
+          <div class="field">
+            <label for="title">Title</label>
+            <input id="title" required maxlength="200" />
+          </div>
+
+          <div class="grid grid-2">
+            <div class="field">
+              <label for="category">Category</label>
+              <select id="category" required>
+                <option value="School">School</option>
+                <option value="Work">Work</option>
+                <option value="Personal">Personal</option>
+                <option value="Health">Health</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="priority">Priority (1–5)</label>
+              <input id="priority" type="number" min="1" max="5" value="3" required />
+            </div>
+          </div>
+
+          <div class="grid grid-2">
+            <div class="field">
+              <label for="dueDate">Due date</label>
+              <input id="dueDate" type="date" />
+            </div>
+
+            <div class="field">
+              <label for="est">Estimated time</label>
+              <select id="est">
+                <option value="">—</option>
+                <option value="00:15:00">15 min</option>
+                <option value="00:25:00">25 min</option>
+                <option value="00:45:00">45 min</option>
+                <option value="01:00:00">1 hour</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row" style="justify-content:flex-end; margin-top:6px;">
+            <button class="btn btn-primary" type="submit">Save task</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2 class="h2">Your tasks</h2>
+        <div class="row" style="margin-top:10px;">
+          <span class="badge open" id="countOpen">Open: 0</span>
+          <span class="badge ok" id="countDone">Done: 0</span>
+        </div>
+
+        <div style="margin-top:10px; overflow:auto;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Priority</th>
+                <th>Due</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="taskRows"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div>FocusFlow • Simple task focus tracking</div>
+  </footer>
+<script src="app.js"></script>
+<script src="tasks.js"></script>
+
+</body>
+</html>

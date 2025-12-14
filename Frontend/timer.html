@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timer • FocusFlow</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <div>FOCUSFLOW</div>
+      </div>
+      <div class="nav-links" id="nav-links"></div>
+      <div class="row" id="nav-actions"></div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+  <section class="card">
+    <div class="card-header">
+      <div>
+        <h1 class="h1">Timer</h1>
+        <p class="lead">Set a focus session and hit start. Sessions are saved locally in your browser.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h2 class="h2">Session</h2>
+
+        <div class="grid" style="margin-top:12px;">
+          <div class="field">
+            <label for="label">What are you working on?</label>
+            <input id="label" placeholder="Example: Study for PROG30000" maxlength="120" />
+          </div>
+
+          <div class="grid grid-2">
+            <div class="field">
+              <label for="minutes">Minutes</label>
+              <input id="minutes" type="number" min="1" max="180" value="25" />
+            </div>
+            <div class="field">
+              <label>&nbsp;</label>
+              <div class="row">
+                <button class="btn btn-primary" id="startBtn" type="button">Start</button>
+                <button class="btn" id="pauseBtn" type="button">Pause</button>
+                <button class="btn btn-danger" id="resetBtn" type="button">Reset</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="text-align:center;">
+            <div style="font-size:52px; font-weight:900; letter-spacing:1px;" id="clock">25:00</div>
+            <div style="color:rgba(234,230,255,.72);" id="clockHint">Ready when you are.</div>
+          </div>
+
+          <div id="notice" class="notice" style="display:none;"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="h2">Recent sessions</h2>
+        <p class="lead">Last 10 sessions from this device.</p>
+        <div id="sessions" style="margin-top:10px;"></div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div>FocusFlow • Simple task focus tracking</div>
+  </footer>
+<script src="app.js"></script>
+<script src="timer.js"></script>
+
+</body>
+</html>

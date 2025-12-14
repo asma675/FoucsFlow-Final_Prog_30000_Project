@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login • FocusFlow</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <div>FOCUSFLOW</div>
+      </div>
+      <div class="nav-links" id="nav-links"></div>
+      <div class="row" id="nav-actions"></div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+  <section class="card" style="max-width:520px; margin:0 auto;">
+    <div class="card-header">
+      <div>
+        <h1 class="h1">Log in</h1>
+        <p class="lead">Use the email and password you registered with.</p>
+      </div>
+    </div>
+
+    <div id="notice" class="notice" style="display:none;"></div>
+
+    <form id="loginForm" class="grid" style="margin-top:12px;">
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required />
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required />
+      </div>
+
+      <div class="row" style="justify-content:space-between; margin-top:6px;">
+        <button class="btn btn-primary" type="submit">Sign in</button>
+        <a class="pill" href="register.html">Need an account?</a>
+      </div>
+    </form>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div>FocusFlow • Simple task focus tracking</div>
+  </footer>
+<script src="app.js"></script>
+<script src="login.js"></script>
+
+</body>
+</html>

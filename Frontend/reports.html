@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reports • FocusFlow</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <div>FOCUSFLOW</div>
+      </div>
+      <div class="nav-links" id="nav-links"></div>
+      <div class="row" id="nav-actions"></div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+  <section class="card">
+    <div class="card-header">
+      <div>
+        <h1 class="h1">Reports</h1>
+        <p class="lead">Simple insights based on your tasks and saved focus sessions.</p>
+      </div>
+      <div class="row">
+        <button class="btn" id="refreshBtn" type="button">Refresh</button>
+      </div>
+    </div>
+
+    <div class="notice" id="notice" style="display:none;"></div>
+
+    <div class="grid grid-2" style="margin-top:14px;">
+      <div class="card">
+        <h2 class="h2">Tasks by category</h2>
+        <div id="catBars" style="margin-top:10px;"></div>
+      </div>
+
+      <div class="card">
+        <h2 class="h2">This week</h2>
+        <div class="kpi-grid" style="grid-template-columns:repeat(2,minmax(0,1fr));">
+          <div class="kpi">
+            <div class="kpi-label">Completed tasks</div>
+            <div class="kpi-value" id="weekDone">0</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Focus minutes</div>
+            <div class="kpi-value" id="weekMins">0</div>
+          </div>
+        </div>
+        <div class="notice" style="margin-top:12px;">
+          “Focus minutes” comes from sessions saved on the Timer page (browser-only).
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div>FocusFlow • Simple task focus tracking</div>
+  </footer>
+<script src="app.js"></script>
+<script src="reports.js"></script>
+
+</body>
+</html>

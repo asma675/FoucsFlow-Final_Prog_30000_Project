@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings • FocusFlow</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <div>FOCUSFLOW</div>
+      </div>
+      <div class="nav-links" id="nav-links"></div>
+      <div class="row" id="nav-actions"></div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+  <section class="card" style="max-width:820px; margin:0 auto;">
+    <div class="card-header">
+      <div>
+        <h1 class="h1">Settings</h1>
+        <p class="lead">Account info and quick cleanup options.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:12px;">
+      <div class="card">
+        <h2 class="h2">Signed in as</h2>
+        <div id="who" class="notice" style="margin-top:10px;"></div>
+        <div class="row" style="margin-top:12px;">
+          <button class="btn btn-danger" id="logout" type="button">Log out</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="h2">Local data</h2>
+        <p class="lead">Timer sessions are stored in your browser. You can clear them anytime.</p>
+        <div class="row" style="margin-top:12px;">
+          <button class="btn" id="clearSessions" type="button">Clear timer sessions</button>
+        </div>
+        <div id="notice" class="notice" style="display:none; margin-top:12px;"></div>
+      </div>
+    </div>
+
+    <div class="notice" style="margin-top:14px;">
+      API: <span style="font-weight:800;">http://localhost:5277/api/Users</span>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div>FocusFlow • Simple task focus tracking</div>
+  </footer>
+<script src="app.js"></script>
+<script src="settings.js"></script>
+
+</body>
+</html>

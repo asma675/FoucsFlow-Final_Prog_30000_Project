@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register • FocusFlow</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <div>FOCUSFLOW</div>
+      </div>
+      <div class="nav-links" id="nav-links"></div>
+      <div class="row" id="nav-actions"></div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+  <section class="card" style="max-width:620px; margin:0 auto;">
+    <div class="card-header">
+      <div>
+        <h1 class="h1">Create your account</h1>
+        <p class="lead">This is a simple class project account — keep it basic.</p>
+      </div>
+    </div>
+
+    <div id="notice" class="notice" style="display:none;"></div>
+
+    <form id="registerForm" class="grid grid-2" style="margin-top:12px;">
+      <div class="field">
+        <label for="firstName">First name</label>
+        <input id="firstName" name="firstName" autocomplete="given-name" required />
+      </div>
+
+      <div class="field">
+        <label for="lastName">Last name</label>
+        <input id="lastName" name="lastName" autocomplete="family-name" required />
+      </div>
+
+      <div class="field" style="grid-column:1/-1;">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required />
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="new-password" required />
+      </div>
+
+      <div class="field">
+        <label for="password2">Confirm password</label>
+        <input id="password2" name="password2" type="password" autocomplete="new-password" required />
+      </div>
+
+      <div class="row" style="grid-column:1/-1; justify-content:space-between; margin-top:6px;">
+        <button class="btn btn-primary" type="submit">Create account</button>
+        <a class="pill" href="login.html">Already have an account?</a>
+      </div>
+    </form>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div>FocusFlow • Simple task focus tracking</div>
+  </footer>
+<script src="app.js"></script>
+<script src="register.js"></script>
+
+</body>
+</html>

@@ -1,62 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login or Sign Up</title>
-    <link rel="stylesheet" href="styles.css"> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FocusFlow</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <h1>FocusFlow User Access</h1>
-    
-    <div class="login-container">
-        
-        <div class="form-toggle">
-            <button id="showLoginBtn" class="active">Log In</button>
-            <button id="showSignupBtn">Sign Up</button>
-        </div>
+  <header class="topbar">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <div>FOCUSFLOW</div>
+      </div>
+      <div class="nav-links" id="nav-links"></div>
+      <div class="row" id="nav-actions"></div>
+    </nav>
+  </header>
 
-        <div id="loginFormContainer" class="form-container">
-            <h2>User Login</h2>
-            <form id="loginForm">
-                <div>
-                    <label for="username">Email:</label>
-                    <input type="email" id="username" name="email" required>
-                </div>
-                <div>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <button type="submit">Log In</button>
-            </form>
-        </div>
+  <main class="container">
 
-        <div id="signupFormContainer" class="form-container" style="display: none;">
-            <h2>Create Account</h2>
-            <form id="signupForm">
-                 <div>
-                    <label for="signupEmail">Email:</label>
-                    <input type="email" id="signupEmail" name="email" required>
-                </div>
-                 <div>
-                    <label for="signupPassword">Password:</label>
-                    <input type="password" id="signupPassword" name="password" required>
-                </div>
-                <div>
-                    <label for="signupFirstName">First Name:</label>
-                    <input type="text" id="signupFirstName" name="firstName" required>
-                </div>
-                <div>
-                    <label for="signupLastName">Last Name:</label>
-                    <input type="text" id="signupLastName" name="lastName" required>
-                </div>
-                <button type="submit">Create Account</button>
-            </form>
-        </div>
-        
-        <p id="message" style="margin-top: 20px; text-align: center;"></p>
+  <section class="card">
+    <div class="card-header">
+      <div>
+        <h1 class="h1">Stay focused, finish what you start.</h1>
+        <p class="lead">
+          FocusFlow keeps your tasks clear and your time intentional — with a clean dashboard, quick task entry,
+          and a built‑in timer.
+        </p>
+      </div>
     </div>
 
-    <script src="main.js"></script>
+    <div class="grid grid-2" style="margin-top:14px;">
+      <div class="card">
+        <h2 class="h2">What you can do</h2>
+        <ul style="margin:10px 0 0; padding-left:18px; color:rgba(234,230,255,.86); line-height:1.6;">
+          <li>Create and prioritize tasks</li>
+          <li>Mark tasks complete with one click</li>
+          <li>Run a focus timer for work sessions</li>
+          <li>View quick summaries and simple reports</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2 class="h2">Next step</h2>
+        <p class="lead">Sign in to your account, or create one in under a minute.</p>
+        <div class="row" style="margin-top:12px;">
+          <a class="btn btn-primary" href="login.html">Log in</a>
+          <a class="btn" href="register.html">Create account</a>
+        </div>
+        <div class="notice" style="margin-top:12px;">
+          Tip: Start the backend first, then open the frontend using Live Server (127.0.0.1:5500).
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="footer">
+    <div>FocusFlow • Simple task focus tracking</div>
+  </footer>
+<script src="app.js"></script>
+
 </body>
 </html>
