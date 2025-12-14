@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace FocusFlowAPI.Models
 {
-    // This class represents the task table
+    // Adrian, this class is used to store the task information and is linked to a user ID
     public class UserTask
     {
         [Key] 

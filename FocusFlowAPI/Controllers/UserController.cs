@@ -6,7 +6,6 @@ using FocusFlowAPI.Models;
 
 namespace FocusFlowAPI.Controllers;
 
-//Controller for the API
 [ApiController] 
 [Route("api/[controller]")]
 public class UsersController : ControllerBase 
@@ -27,7 +26,10 @@ public class UsersController : ControllerBase
         return await _context.Users.ToListAsync();
     }
 
-    //Get user from id
+    /*
+    Asma
+    This endpoint is used to get the user by ID
+    */
     [HttpGet("{id}")]
     public async Task<ActionResult<User>> GetUser(int id)
     {
@@ -40,7 +42,10 @@ public class UsersController : ControllerBase
 
         return user;
     }
-    //login this returns the user
+    /*
+    Hayden
+    This endpoint is used to authenticate the user by accpecting the email and password (which would be hashed in a realease version) and then returns the user information
+    */
     [HttpPost("login")]
     public async Task<ActionResult<User>> LoginUser([FromBody] UserLoginDto login)
     {
@@ -54,7 +59,11 @@ public class UsersController : ControllerBase
 
         return user;
     }
-    //used to create a user
+    /*
+    Hayden
+    This endpoint is used to create a new user, it accepts the users informations and makes sure its valid, it then also checks that the EMAIL doesnt already exsit,
+    if succesfull it adds the user to the database and then returns the user to be used in the frontend.
+    */
     [HttpPost]
     public async Task<ActionResult<User>> PostUser([FromBody] User user)
     {
@@ -76,7 +85,10 @@ public class UsersController : ControllerBase
 
         return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
     }
-    //Get all users tasks
+    /*
+    Adrian
+    This endpoint is used to get create a new Task for the user, it accepts the task information and then add its to the database with the status Open.
+    */
     [HttpPost("{userId}/Tasks")]
     public async Task<ActionResult<UserTask>> PostTaskForUser(int userId, [FromBody] UserTask userTask)
     {
@@ -106,7 +118,10 @@ public class UsersController : ControllerBase
 
         return CreatedAtAction(nameof(GetTasksForUser), new { userId = userTask.UserId }, userTask);
     }
-
+    /*
+    Asma
+    This endpoint is used to get All tasks of the user, it then also checks if the task is completed and sends the information to the frontend
+    */
     [HttpGet("{userId}/Tasks")]
     public async Task<ActionResult<IEnumerable<UserTask>>> GetTasksForUser(int userId)
     {
@@ -128,7 +143,10 @@ public class UsersController : ControllerBase
 
         return Ok(userTasks);
     }
-
+    /*
+    Adrian
+    This endpoint is used to set a task as Complete, it takes the taskID and userId and marks the select task as complete.
+    */
     [HttpPut("{userId}/Tasks/{taskId}/Complete")]
     public async Task<IActionResult> CompleteTask(int userId, int taskId)
     {
@@ -163,53 +181,11 @@ public class UsersController : ControllerBase
         }
         return NoContent();
     }
-
-    // Update a task (title/category/priority/dueDate/status/estimatedTime)
-    [HttpPut("{userId}/Tasks/{taskId}")]
-    public async Task<ActionResult<UserTask>> UpdateTask(int userId, int taskId, [FromBody] UserTask update)
-    {
-        var task = await _context.UserTasks.FirstOrDefaultAsync(t => t.Id == taskId && t.UserId == userId);
-        if (task == null)
-        {
-            return NotFound($"Task with ID {taskId} not found for User ID {userId}.");
-        }
-
-        // Only update allowed fields
-        task.Title = string.IsNullOrWhiteSpace(update.Title) ? task.Title : update.Title;
-        task.Category = update.Category ?? task.Category;
-        task.Priority = update.Priority;
-        task.DueDate = update.DueDate;
-        task.Status = string.IsNullOrWhiteSpace(update.Status) ? task.Status : update.Status;
-        task.EstimatedTime = update.EstimatedTime;
-
-        // If status moves to Done, set CompletionDate
-        if (task.Status.Equals("Done", StringComparison.OrdinalIgnoreCase) && task.CompletionDate == null)
-        {
-            task.CompletionDate = DateTime.UtcNow;
-        }
-        if (!task.Status.Equals("Done", StringComparison.OrdinalIgnoreCase))
-        {
-            task.CompletionDate = null;
-        }
-
-        await _context.SaveChangesAsync();
-        return Ok(task);
-    }
-
-    // Delete a task
-    [HttpDelete("{userId}/Tasks/{taskId}")]
-    public async Task<IActionResult> DeleteTask(int userId, int taskId)
-    {
-        var task = await _context.UserTasks.FirstOrDefaultAsync(t => t.Id == taskId && t.UserId == userId);
-        if (task == null)
-        {
-            return NotFound($"Task with ID {taskId} not found for User ID {userId}.");
-        }
-        _context.UserTasks.Remove(task);
-        await _context.SaveChangesAsync();
-        return NoContent();
-    }
-
+ 
+     /*
+    Adrian
+    Helper function to check if the task exists
+    */
     private bool TaskExists(int id)
     {
         return _context.UserTasks.Any(e => e.Id == id);

@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FocusFlowAPI.Models
 {
+    //Asma This code is used for storing the users information, including Name, Email, Password.
     public class User
     {
         
